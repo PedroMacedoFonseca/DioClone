@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -11,4 +11,10 @@ export const GlobalStyles = createGlobalStyle`
         background-color: #1E192C;
         color: #FFFFFF;
     }
-`
+
+    input:-internal-autofill-selected {
+        background-color: transparent !important;
+        color: #FFFFFF !important;
+        border: 1px solid #ccc; /* Opcional, caso queira uma borda */
+  }
+`;
