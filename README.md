@@ -7,7 +7,9 @@
 
 ### Página Inicial: Apresenta a interface principal do Dio.Me, com informações sobre cursos e bootcamps disponíveis. 🏠
 
-### Página de Login: Permite que usuários acessem suas contas ou se registrem na plataforma. 🔒
+### Página de Login: Permite que usuários acessem suas contas ou se registrem na plataforma com validações. 🔒
+
+### Página de Cadastro: Criando usuário que será imputado no servidor de usuários. 🔒
 
 ### Feed de Novidades: Exibe atualizações recentes, novos cursos e eventos relacionados. 📰
 

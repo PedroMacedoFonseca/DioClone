@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import { Card } from "../../Components/Card";
 import { Header } from "../../Components/Header";
 import { Container, Column, Title, TitleHighlight } from "./styles";

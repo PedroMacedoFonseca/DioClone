@@ -1,9 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../Assets/logo-dio.png";
 import { Button } from "../Button";
 import {
   BuscarInputContainer,
-  Column,
   Container,
   Input,
   Menu,
@@ -14,6 +14,8 @@ import {
 } from "./styles";
 
 const Header = ({ autenticado }) => {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
       <Container>
@@ -30,15 +32,15 @@ const Header = ({ autenticado }) => {
           ) : null}
         </Row>
         <Row>
-            {autenticado ? (
-                <UserPicture src="https://cdn-icons-png.flaticon.com/512/219/219983.png" />
-            ) : (
-                <>
-                <MenuRight href="#">Home</MenuRight>
-                <Button title="Entrar" />
-                <Button title="Cadastrar" />
-                </>
-            )}
+          {autenticado ? (
+            <UserPicture src="https://cdn-icons-png.flaticon.com/512/219/219983.png" />
+          ) : (
+            <>
+              <MenuRight onClick={() => navigate("/")}>Home</MenuRight>
+              <Button title="Entrar" onClick={() => navigate("/login")} />
+              <Button title="Cadastrar" onClick={() => navigate("/cadastro")} />
+            </>
+          )}
         </Row>
       </Container>
     </Wrapper>

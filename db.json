@@ -1,6 +1,23 @@
 {
-    "users": [
-        {"id": 1, "name": "João", "email": "joao@email.com", "senha": "123456"},
-        {"id": 2, "name": "Mateus", "email": "mateus@email.com", "senha": "123456"}
-    ]
+  "users": [
+    {
+      "id": "1",
+      "name": "João",
+      "email": "joao@email.com",
+      "senha": "123456"
+    },
+    {
+      "id": "2",
+      "name": "Mateus",
+      "email": "mateus@email.com",
+      "senha": "123456"
+    },
+    {
+      "id": "177e",
+      "name": "Pedro Macedo",
+      "email": "pedro@email.com",
+      "password": "123456",
+      "confirmPassword": "123456"
+    }
+  ]
 }

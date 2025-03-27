@@ -5,7 +5,7 @@ import * as yup from "yup";
 
 import { api } from "../../Services/api";
 
-import { MdEmail, MdLock } from "react-icons/md";
+import { MdPerson, MdEmail, MdLock } from "react-icons/md";
 import { Button } from "../../Components/Button";
 import { Header } from "../../Components/Header";
 import { Input } from "../../Components/Input";
@@ -13,7 +13,6 @@ import {
   Column,
   Container,
   CreateText,
-  ForgotText,
   Row,
   SubtitleLogin,
   Title,
@@ -23,18 +22,23 @@ import {
 
 const schema = yup
   .object({
+    name: yup.string().required("Nome é obrigatório"),
     email: yup
       .string()
-      .email("Email não é válido.")
+      .email("Email não é válido")
       .required("E-mail é obrigatório"),
     password: yup
       .string()
-      .min(3, "No mínimo 3 caracteres")
+      .min(6, "A senha deve ter pelo menos 6 caracteres")
       .required("Senha é obrigatória"),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "As senhas devem ser iguais")
+      .required("Confirmação de senha é obrigatória"),
   })
   .required();
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
 
   const {
@@ -45,24 +49,20 @@ const Login = () => {
     resolver: yupResolver(schema),
     mode: "all",
     defaultValues: {
+      name: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
   const onSubmit = async (formData) => {
     try {
-      const { data } = await api.get(
-        `users?email=${formData.email}&senha=${formData.password}`
-      );
-
-      if (data && data.length === 1) {
-        navigate("/feed");
-      } else {
-        alert("E-mail ou senha inválidos.");
-      }
+      await api.post("users", formData);
+      alert("Cadastro realizado com sucesso!");
+      navigate("/login");
     } catch (error) {
-      alert("Houve um erro, tente novamente.");
+      alert("Erro ao cadastrar, tente novamente.");
     }
   };
 
@@ -78,9 +78,18 @@ const Login = () => {
         </Column>
         <Column>
           <Wrapper>
-            <TitleLogin>Bem-vindos</TitleLogin>
-            <SubtitleLogin>Faça seu Login e make the change._</SubtitleLogin>
+            <TitleLogin>Faça Seu Cadastro</TitleLogin>
+            <SubtitleLogin>
+              Crie sua conta e comece agora a aprender! 💡
+            </SubtitleLogin>
             <form onSubmit={handleSubmit(onSubmit)}>
+              <Input
+                name="name"
+                errorMessage={errors.name?.message}
+                control={control}
+                placeholder="Nome"
+                leftIcon={<MdPerson />}
+              />
               <Input
                 name="email"
                 errorMessage={errors.email?.message}
@@ -96,17 +105,24 @@ const Login = () => {
                 type="password"
                 leftIcon={<MdLock />}
               />
+              <Input
+                name="confirmPassword"
+                errorMessage={errors.confirmPassword?.message}
+                control={control}
+                placeholder="Confirmar Senha"
+                type="password"
+                leftIcon={<MdLock />}
+              />
               <Button
-                title="Entrar"
-                variant="secondary"
+                title="Cadastrar"
+                variant="primary"
                 type="submit"
                 disabled={!isValid}
               />
             </form>
             <Row>
-              <ForgotText>Esqueci Minha Senha</ForgotText>
-              <CreateText onClick={() => navigate("/cadastro")}>
-                Criar Conta
+              <CreateText onClick={() => navigate("/login")}>
+                Já tem uma conta? <span>Entrar.</span>
               </CreateText>
             </Row>
           </Wrapper>
@@ -116,4 +132,4 @@ const Login = () => {
   );
 };
 
-export { Login };
+export { Register };

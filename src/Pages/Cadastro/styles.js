@@ -65,11 +65,6 @@ export const ForgotText = styled.p`
     line-height: 19px;
 
     color: #E5E044;
-
-    &:hover {
-      cursor: pointer; 
-      text-decoration: underline;
-    }
 `
 
 export const CreateText = styled.p`
@@ -80,7 +75,6 @@ export const CreateText = styled.p`
     line-height: 19px;
 
     color: #E23DD7;
-
     &:hover {
       cursor: pointer; 
       text-decoration: underline;
