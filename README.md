@@ -25,7 +25,7 @@
 
 ### - 📡 Axios: para Cliente HTTP.
 
-### - 🗄️ json-server: para criar uma API fake com os usuários cadastros no site.
+### - 🗄️ json-server: para criar uma API fake com os usuários cadastrados no site.
 
 ## 🚀 Validação de Formulário de Login
 
